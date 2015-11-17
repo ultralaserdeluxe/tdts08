@@ -1,0 +1,63 @@
+\documentclass[titlepage, a4paper]{article}
+\usepackage[swedish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage[parfill]{parskip}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{graphicx,epstopdf}
+\usepackage{listings}
+\epstopdfsetup{suffix=}
+\DeclareGraphicsExtensions{.ps}
+\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+
+\lstset{literate=%
+    {å}{{\r{a}}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {Å}{{\r{A}}}1
+    {Ä}{{\"A}}1
+    {Ö}{{\"O}}1
+}
+
+\newcommand{\todo}[1] {\textbf{\textcolor{red}{#1}}}
+
+%% Headers och Footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{Alexander Yngve \\ Pål Kastman}
+\chead{TDTS08}
+
+
+
+\begin{document}
+
+{\ }\vspace{45mm}
+
+\begin{center}
+    \Huge \textbf{TDTS08: Lab Report}
+\end{center}
+\begin{center}
+    \Large Lab 1: Cache Memories
+\end{center}
+
+\vspace{250pt}
+
+\begin{center}
+    \begin{tabular}{|*{3}{p{40mm}|}}
+        \hline
+        \textbf{Name} & \textbf{PIN} & \textbf{Email} \\ \hline
+        {Alexander Yngve} & {930320-6651} & {aleyn573@student.liu.se} \\ \hline
+        {Pål Kastman} & {851212-7575} & {palka285@student.liu.se} \\ \hline
+    \end{tabular}
+\end{center}
+\newpage
+
+\section{Introduction}
+
+
+\end{document}
