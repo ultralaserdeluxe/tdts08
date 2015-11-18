@@ -65,7 +65,7 @@ We analyze caches in sizes ranging from 128kB to 4096kB and with associativity f
 
 \section{Cache basics}
 \subsection{Problem 1}
-How is a 8-bit memory adress divided into tag, line number and byte number?
+\underline{How is a 8-bit memory adress divided into tag, line number and byte number?}
 
 $$s = \text{log}_{2}(\text{no. of  blocks}) = \text{log}_{2}(64) = 6$$
 $$r = \text{log}_{2}(\text{no. of lines in cache}) = \text{log}_{2}(8) = 3$$
@@ -76,7 +76,7 @@ $$\text{size of line number} = r = 3 \text{bits}$$
 $$\text{size of byte number} = w = 2 \text{bits}$$
 
 \subsection{Problem 2}
-Into what line would bytes with each of the following addresses be stored?
+\underline{Into what line would bytes with each of the following addresses be stored?}
 
 000\underline{1 10}11 $\to$ line 6
 
@@ -87,19 +87,20 @@ Into what line would bytes with each of the following addresses be stored?
 101\underline{0 10}10 $\to$ line 2
 
 \subsection{Problem 3}
-Suppose the byte address 1010 0001 is stored in the cache. What are the addresses of the other bytes stored in the cache?
+\underline{Suppose the byte address 1010 0001 is stored in the cache.} \\
+\underline{What are the addresses of the other bytes stored in the cache?}
 
 1010 0000 \\
 1010 0010 \\
 1010 0011 \\
 
 \subsection{Problem 4}
-How many total bytes of memory can be stored in the cache?
+\underline{How many total bytes of memory can be stored in the cache?}
 
 32 bytes
 
 \subsection{Problem 5}
-Why is the tag also stored in the cache?
+\underline{Why is the tag also stored in the cache?}
 
 To associate the cacheline with an address and to calculate hit or miss.
 
@@ -164,8 +165,6 @@ And finally when storing both data and instructions the biggest memory was again
 \end{figure}
 
 We also noticed that the gap in performance tightened when the sizes and associativity of the caches became greater.
-
-\section{Conclusion}
 
 \end{document}
 
