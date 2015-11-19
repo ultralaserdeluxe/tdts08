@@ -62,7 +62,33 @@
 The purpose of this lab is to learn how instruction pipelining works and how branch prediction affects the performance of the pipeline.
 
 \section{Pipeline basics I}
+
 \todo{IMPLEMENT PICTURE DURING TEATIME}
+
+
+\begin{description}
+\item[LB instruction]
+\item[IF] -- fetch instruction in memory.
+\item[DA] -- activate different parts in the cpu depending on the instruction.
+\item[CO] -- calculate the address in the memory where the operand is stored. 
+\item[FO] -- fetch operand from memory.
+\item[EX] -- not used.
+\item[WB] -- write operand to register.
+\end{description}
+~\newline
+
+\begin{description}
+\item[ADD instruction]
+\item[IF] -- fetch instruction in memory.
+\item[DA] -- activate different parts in the cpu depending on the instruction.
+\item[CO] -- calculate the address in the memory where the operand is stored. 
+\item[FO] -- fetch operand from memory.
+\item[EX] -- compute addition.
+\item[WB] -- write result to register.
+\end{description}
+~\newline
+
+The main difference for the two instruction is that LB doesn't need to use the instruction execute (EX) state, since its only loading data from the memory.
 
 \section{Pipeline basics II}
 When we have a short pipeline we get less time penalty due to that its only one step that needs redoing and therefore its detected earlier. \\
@@ -82,10 +108,11 @@ The performance result can be seen in figure \ref{fig:performance} below.
 
 \begin{figure}[H]
 	\centering
-	\scalebox{0.342}{\includegraphics{img/performance.png}}
+	\scalebox{0.342}{\includegraphics{img/performance-time.png}}
 	\caption{Performance of the different branch prediction algorithms}
 	\label{fig:performance}
 \end{figure}
 
 \end{document}
+
 
