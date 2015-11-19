@@ -62,11 +62,47 @@
 The purpose of this lab is to learn how instruction pipelining works and how branch prediction affects the performance of the pipeline.
 
 \section{Pipeline basics I}
-\todo{IMPLEMENT PICTURE DURING TEATIME}
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+        {IF} & {DA} & {CO} & {FO} & {EX} & {WB} \\ \hline
+  \end{tabular}
+  \caption{Six stage pipeline.}
+  \label{fig:pipeline}
+\end{figure}
 
 \section{Pipeline basics II}
 When we have a short pipeline we get less time penalty due to that its only one step that needs redoing and therefore its detected earlier. \\
-\todo{IMPLEMENT PICTURE DURING TEATIME}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+        {} & {1} & {2} & {3} & {4} & {5} \\ \hline
+        {1} & {IF} & {EX} & {} & {} & {} \\ \hline
+        {2} & {} & {IF} & {EX} & {} & {} \\ \hline
+        {3} & {} & {} & {IF} & {EX} & {} \\ \hline
+        {4} & {} & {} & {} & {IF} & {EX} \\ \hline
+  \end{tabular}
+  \caption{Ideal pipeline operation.}
+  \label{fig:ideal_pipe_op}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+        {} & {1} & {2} & {3} & {4} & {5} & {6} \\ \hline
+        {1} & {IF} & {EX} & {} & {} & {} & {} \\ \hline
+        {2} & {} & {IF} & {EX} & {} & {} & {} \\ \hline
+        {25} & {} & {} & {IF} & {} & {} & {} \\ \hline
+        {4} & {} & {} & {} & {IF} & {EX} & {} \\ \hline
+        {5} & {} & {} & {} & {} & {IF} & {EX} \\ \hline
+  \end{tabular}
+  \caption{Pipeline operation during conditional jump.}
+  \label{fig:condjmp_pipe_op}
+\end{figure}
 
 \section{Branch prediction}
 Here we analyze how the different branch prediction algorithms perform.
