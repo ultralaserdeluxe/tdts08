@@ -61,10 +61,30 @@
 \section{Introduction}
 
 \section{Pipeline basics I}
+\todo{IMPLEMENT PICTURE DURING TEATIME}
 
 \section{Pipeline basics II}
+When we have a short pipeline we get less time penalty due to that its only one step that needs redoing and therefore its detected earlier. \\
+\todo{IMPLEMENT PICTURE DURING TEATIME}
 
 \section{Branch prediction}
+Here we analyze how the different branch prediction algorithms perform.
+
+\subsection{Desciption}
+For each predictor a benchmark was run according to the following command
+
+$$\text{sim-outorder -bpred \textit{predictor} $\mathtt{\sim}$/TDTS08/bin/go.ss 3 8}$$
+
+
+\subsection{Solution}
+The performance result can be seen in figure \ref{fig:performance} below.
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.342}{\includegraphics{img/performance.png}}
+	\caption{Performance of the different branch prediction algorithms}
+	\label{fig:performance}
+\end{figure}
 
 \end{document}
 
