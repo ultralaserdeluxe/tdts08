@@ -157,21 +157,15 @@ The performance result can be seen in figure \ref{fig:performance} below.
 	\caption{Performance of the different branch prediction algorithms}
 	\label{fig:performance}
 \end{figure}
-Here we can see that the not taken algorithm performs worst. The other algorithm originated from this value performs as follows
 
-%% \begin{description}
-%% \Item[Algorithm performance]
-%% \item[TAKEN] -- 1.01085469456
-%% \item[BMOD] -- 1.49785614246
-%% \item[2LEV] -- 1.38876943038
-%% \item[COMB] -- 1.50475544831
-%% \item[PERFECT] -- 1.79585191583
-%% \item[NOTTAKEN] -- 1
-%% \end{description}
-%% ~\newline
+Here we can see that the not taken algorithm performs worst. If we look at how the algorithms perform according to each other, and we originate from the not taken algorithm who performs the worst we get a result according to figure \ref{fig:comparative-evaluation}.
 
 
+\begin{figure}[H]
+	\centering
+	\scalebox{0.342}{\includegraphics{img/comparative-evaluation.png}}
+	\caption{Performance of the alogorithm according to the not taken algorithm who performed worst.}
+	\label{fig:comparative-evaluation}
+\end{figure}
 
 \end{document}
-
-
