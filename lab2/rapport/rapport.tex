@@ -9,9 +9,13 @@
 \usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
 \usepackage{epstopdf}
 \usepackage{listings}
+\usepackage[table]{xcolor}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+
+
+\definecolor{green}{rgb}{56,90,115}
 
 \lstset{literate=%
     {å}{{\r{a}}}1
@@ -67,7 +71,12 @@ The purpose of this lab is to learn how instruction pipelining works and how bra
   \centering
   \begin{tabular}{|c|c|c|c|c|c|}
     \hline
-        {IF} & {DA} & {CO} & {FO} & {EX} & {WB} \\ \hline
+    \cellcolor{blue!25}{IF} &
+    \cellcolor{orange!25}{DA} &
+    \cellcolor{blue!25}{CO} &
+    \cellcolor{orange!25}{FO} &
+    \cellcolor{blue!25}{EX} &
+    \cellcolor{orange!25}{WB} \\ \hline
   \end{tabular}
   \caption{Six stage pipeline.}
   \label{fig:pipeline}
@@ -106,10 +115,10 @@ When we have a short pipeline we get less time penalty due to that its only one 
   \begin{tabular}{|c|c|c|c|c|c|}
     \hline
         {} & {1} & {2} & {3} & {4} & {5} \\ \hline
-        {1} & {IF} & {EX} & {} & {} & {} \\ \hline
-        {2} & {} & {IF} & {EX} & {} & {} \\ \hline
-        {3} & {} & {} & {IF} & {EX} & {} \\ \hline
-        {4} & {} & {} & {} & {IF} & {EX} \\ \hline
+        {1} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} & {} & {} \\ \hline
+        {2} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} & {} \\ \hline
+        {3} & {} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} \\ \hline
+        {4} & {} & {} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} \\ \hline
   \end{tabular}
   \caption{Ideal pipeline operation.}
   \label{fig:ideal_pipe_op}
@@ -120,11 +129,11 @@ When we have a short pipeline we get less time penalty due to that its only one 
   \begin{tabular}{|c|c|c|c|c|c|c|}
     \hline
         {} & {1} & {2} & {3} & {4} & {5} & {6} \\ \hline
-        {1} & {IF} & {EX} & {} & {} & {} & {} \\ \hline
-        {2} & {} & {IF} & {EX} & {} & {} & {} \\ \hline
-        {25} & {} & {} & {IF} & {} & {} & {} \\ \hline
-        {4} & {} & {} & {} & {IF} & {EX} & {} \\ \hline
-        {5} & {} & {} & {} & {} & {IF} & {EX} \\ \hline
+        {1} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} & {} & {} & {} \\ \hline
+        {2} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} & {} & {} \\ \hline
+        {25} & {} & {} & \cellcolor{blue!25}{IF} & {} & {} & {} \\ \hline
+        {4} & {} & {} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} & {} \\ \hline
+        {5} & {} & {} & {} & {} & \cellcolor{blue!25}{IF} & \cellcolor{orange!25}{EX} \\ \hline
   \end{tabular}
   \caption{Pipeline operation during conditional jump.}
   \label{fig:condjmp_pipe_op}
@@ -144,10 +153,24 @@ The performance result can be seen in figure \ref{fig:performance} below.
 
 \begin{figure}[H]
 	\centering
-	\scalebox{0.342}{\includegraphics{img/performance-time.png}}
+	\scalebox{0.342}{\includegraphics{img/performance-cycles.png}}
 	\caption{Performance of the different branch prediction algorithms}
 	\label{fig:performance}
 \end{figure}
+Here we can see that the not taken algorithm performs worst. The other algorithm originated from this value performs as follows
+
+%% \begin{description}
+%% \Item[Algorithm performance]
+%% \item[TAKEN] -- 1.01085469456
+%% \item[BMOD] -- 1.49785614246
+%% \item[2LEV] -- 1.38876943038
+%% \item[COMB] -- 1.50475544831
+%% \item[PERFECT] -- 1.79585191583
+%% \item[NOTTAKEN] -- 1
+%% \end{description}
+%% ~\newline
+
+
 
 \end{document}
 
