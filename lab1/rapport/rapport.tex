@@ -136,7 +136,7 @@ Here we analyze how the cache memory performs when it only handles data, instruc
 \subsection{Description}
 For the three test cases we tested with caches of size ranging from 128kB up to 4096kB. For each size in memory we also tested with associativity ranging from 1 to 8.
 
-\subsection{Solution}
+\subsection{Result}
 We found that when only storing data in the cache, the smallest memory with the lowest associativity performed worst, and for every step in increasing the memory size and the associativity the performance also increased, this can be seen in figure \ref{fig:data-cache}.
 
 \begin{figure}[H]
@@ -166,5 +166,15 @@ And finally when storing both data and instructions the biggest memory was again
 
 We also noticed that the gap in performance tightened when the sizes and associativity of the caches became greater.
 
+\section{Conclusion}
+The miss rate for data is ten times higher than that for instructions which points to that the cache is big enough to store most of the instructions needed by the program, data access is the limiting factor.
+
+We also notice that for instruction- and unified cache, associativity greater than two doesn't contribute that much. The size of the cache is therefore more important, as this gives a greater increase in performance.
+
+To get the most optimal balance between associativity and size of the cache such evaluations is important, because if performance is not achieved by increasing associativity or size of the cache then you will have unnecessary costs. It's also important to do different benchmarks to get a balanced performance for different kind of programs, otherwise you could build a processor that only performs well in specific cases.
+
+The conclusion is that as long as you have associativity equal or greater than two, you get more performance for your money by increasing the size of the cache than increasing associativity.
+
+For example in this laboration we can see that for the unified cache we nearly don't achieve increase in performance if we increase the associativity, whereas for size of the cache the performance improves more.
 \end{document}
 
