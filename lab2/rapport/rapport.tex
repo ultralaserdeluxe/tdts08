@@ -10,6 +10,7 @@
 \usepackage{epstopdf}
 \usepackage{listings}
 \usepackage[table]{xcolor}
+\usepackage{enumitem}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
@@ -83,25 +84,25 @@ The purpose of this lab is to learn how instruction pipelining works and how bra
 \end{figure}
 
 
-\begin{description}
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries WB}]
 \item[LB instruction]
-\item[IF] -- fetch instruction in memory.
-\item[DA] -- activate different parts in the cpu depending on the instruction.
-\item[CO] -- calculate the address in the memory where the operand is stored. 
-\item[FO] -- fetch operand from memory.
-\item[EX] -- not used.
-\item[WB] -- write operand to register.
+\item[IF] fetch instruction in memory.
+\item[DA] activate different parts in the cpu depending on the instruction.
+\item[CO] calculate the address in the memory where the operand is stored. 
+\item[FO] fetch operand from memory.
+\item[EX] not used.
+\item[WB] write operand to register.
 \end{description}
 ~\newline
 
-\begin{description}
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries WB}]
 \item[ADD instruction]
-\item[IF] -- fetch instruction in memory.
-\item[DA] -- activate different parts in the cpu depending on the instruction.
-\item[CO] -- calculate the address in the memory where the operand is stored. 
-\item[FO] -- fetch operand from memory.
-\item[EX] -- compute addition.
-\item[WB] -- write result to register.
+\item[IF] fetch instruction in memory.
+\item[DA] activate different parts in the cpu depending on the instruction.
+\item[CO] calculate the address in the memory where the operand is stored. 
+\item[FO] fetch operand from memory.
+\item[EX] compute addition.
+\item[WB] write result to register.
 \end{description}
 ~\newline
 
@@ -147,8 +148,20 @@ For each predictor a benchmark was run according to the following command
 
 $$\text{sim-outorder -bpred \textit{predictor} $\mathtt{\sim}$/TDTS08/bin/go.ss 3 8}$$
 
+The different algorithms works as following:
 
-\subsection{Solution}
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries NOTTAKEN}]
+
+\item[TAKEN] Assumes the jump is always taken.
+\item[BIMOD] Address of the branch instruction is used as a key into an associative memory where a two bit saturating counter is stored, when branch is taken the counter is incremented and vice versa. The branch will look on the msb to determine direction.
+\item[2LEV] Current branch instruction has a set of saturating counters which is choosen depending on the history of the branch, this history is stored in a shift register.
+\item[COMB] Combination of bimod and 2lev.
+\item[PERFECT] This one cheats and always chooses the correct branch.
+\item[NOTTAKEN] Assumes the jump is never taken.
+\end{description}
+~\newline
+
+\subsection{Result}
 The performance result can be seen in figure \ref{fig:performance} below.
 
 \begin{figure}[H]
