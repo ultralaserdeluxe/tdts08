@@ -1,0 +1,88 @@
+\documentclass[titlepage, a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[parfill]{parskip}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{epstopdf}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\epstopdfsetup{suffix=}
+\DeclareGraphicsExtensions{.ps}
+\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+
+
+\definecolor{green}{rgb}{56,90,115}
+
+\lstset{literate=%
+    {å}{{\r{a}}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {Å}{{\r{A}}}1
+    {Ä}{{\"A}}1
+    {Ö}{{\"O}}1
+}
+
+\newcommand{\todo}[1] {\textbf{\textcolor{red}{#1}}}
+
+\usepackage{fancyhdr}
+\fancyhead[L]{}
+\pagestyle{fancy}
+\rhead{Alexander Yngve \\ Pål Kastman}
+\chead{TDTS08}
+\thispagestyle{empty}
+
+\begin{document}
+
+{\ }\vspace{45mm}
+
+\begin{center}
+  \Huge \textbf{TDTS08: Lab Report}
+\end{center}
+\begin{center}
+  \Large Lab 3: Superscalar Processors
+\end{center}
+
+\vspace{250pt}
+
+\begin{center}
+  \begin{tabular}{|*{3}{p{40mm}|}}
+    \hline
+    \textbf{Name} & \textbf{PIN} & \textbf{Email} \\ \hline
+           {Alexander Yngve} & {930320-6651} & {aleyn573@student.liu.se} \\ \hline
+           {Pål Kastman} & {851212-7575} & {palka285@student.liu.se} \\ \hline
+  \end{tabular}
+\end{center}
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\section{Introduction}
+The purpose of this lab is to learn how Supersclar Processors work, and to try and modify an processor architecture to make it simpler, but it should still perform within 5\% of the inital designs performance.
+\section{Method}
+We started out by investigating every part of the design individually, to see how they affected the performance of the design.
+
+We then choose to simplify the parts that didn't affect the performance. We also looked at what parts we couldn't simplify due to that the performance would go further than 5\% from the initial performance and thus couldn't be changed.
+
+Now we looked at the parts of the design that we could modify, and at their traces.
+
+\section{Result}
+\todo{insert graphs of how the parameters changed} \\
+In figure \ref{} we can see that by changing the floating point, floating point multiplexer and the integer multiplexer, the system didn't perform any worse.
+\todo{explain why go.ss doesn't need those} \\
+
+
+\end{document}
+
+%\begin{figure}[H]
+%	\centering
+%	\scalebox{0.342}{\includegraphics{}}
+%	\caption{}
+%	\label{fig:}
+%\end{figure}
