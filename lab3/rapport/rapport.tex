@@ -131,7 +131,7 @@ In figure \ref{fig:performance} we can see that reducing the number of integer m
 \label{tab:integer}
 \end{table}
 
-When observing the Integer alu:s, we instead see in Table \ref{}, that the performance will reduce drastically when reducing the amount from 4, thus we decided not to change this in the design, as the performance will drop beneath 5\% of the standard design performance.
+When observing the Integer alu:s, we instead see in table \ref{tab:integer}, that the performance will reduce drastically when reducing the amount from 4, thus we decided not to change this in the design, as the performance will drop beneath 5\% of the standard design performance.
 
 \subsection{Floating Point components}
 In figure \ref{fig:performance} we can see that by changing the floating point alu \& multiplier, the system didn't perform any worse, thus we decided to simplify these as much as possible.
@@ -153,7 +153,7 @@ In figure \ref{fig:performance} we can see that by changing the floating point a
 \subsection{Control components}
 The speed of the system was already at the lowest possible, which means by changing this value will increase the complexity of the design, and therefore we decided not to.
 
-When changing the Register Update Unit wee can see in Table \ref{}, that when reducing only one step to 16 instead of 32 we get such a result that by changing this we would nog longer be within 5\% of the standard designs performance.
+When changing the Register Update Unit wee can see in table \ref{tab:control}, that when reducing only one step to 16 instead of 32 we get such a result that by changing this we would nog longer be within 5\% of the standard designs performance.
 
 \begin{table}[H]
 \centering
@@ -179,7 +179,7 @@ When changing the Register Update Unit wee can see in Table \ref{}, that when re
   fetch:speed & 2 & 50868222 \\ \hline
 \end{tabular}
 
-\label{tab:floatingpoint}
+\label{tab:control}
 \end{table}
 
 \subsection{Simplified Design}
@@ -191,10 +191,3 @@ For floating point alu \& multiplier we believe that these parts doesn't affect 
 In Hiroshima, Japan on August 6, 1945, a game of Go was being played. Meanwhile high above the clouds, a lonely B29 Superfortress was soaring peacefully like an Albatross. It was carrying a very special payload, a product of a joint venture between science and military interests. The game was about to enter its third day of play when the B29 dropped an atomic bomb at 8:15am. After the boom the game was continued outside the city due recommendation from the police.
 
 \end{document}
-
-%\begin{figure}[H]
-%	\centering
-%	\scalebox{0.342}{\includegraphics{}}
-%	\caption{}
-%	\label{fig:}
-%\end{figure}
