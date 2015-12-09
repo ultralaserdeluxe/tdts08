@@ -186,6 +186,29 @@ When changing the Register Update Unit wee can see in table \ref{tab:control}, t
 
 \subsection{Simplified Design}
 
+Using the values in table \ref{tab:simplified} the simulation cycles increased to \textbf{51696860} which is within the +5\% performance requirements.
+
+\begin{table}[H]
+\centering
+\caption{Simplified settings.}
+
+\begin{tabular}{|l|r|r|}
+  \hline
+  \textbf{Setting} & \textbf{Default value} & \textbf{Modified value} \\ \hline
+  res:ialu & 4 & 4 \\ \hline
+  res:imult & 4 & 1 \\ \hline
+  res:fpalu & 2 & 1 \\ \hline
+  res:fpmult & 2 & 1 \\ \hline
+  ruu:size & 32 & 32 \\ \hline
+  commit:width & 8 & 4 \\ \hline
+  issue:width & 8 & 4 \\ \hline
+  decode:width & 16 & 8 \\ \hline
+  fetch:speed & 1 & 1 \\ \hline
+\end{tabular}
+
+\label{tab:simplified}
+\end{table}
+
 \section{Discussion}
 For floating point alu \& multiplier we believe that these parts doesn't affect the performance due to that go.ss only uses integer values.
 
