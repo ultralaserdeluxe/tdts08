@@ -105,7 +105,6 @@ The config file ''superscalar.cfg'' is supplied with the lab and contains all de
 
 Running the simulator with the default settings gave us a simulation time of \textbf{50868222} cycles, with the 5\% requirement from section \ref{sec:intro} this results in a maximum of \textbf{53411633} simulation cycles.
 
-\subsection{Integer components}
 \begin{figure}[H]
   \centering
   \scalebox{0.342}{\includegraphics{img/performance.png}}
@@ -113,7 +112,10 @@ Running the simulator with the default settings gave us a simulation time of \te
   \label{fig:performance}
 \end{figure}
 
-In figure \ref{fig:performance} we can see that reducing the number of integer multipliers to only one, no noticeable change in performance could be seen. Therefore we decided to reduce the amount to only one.
+An overview of the different setups can be seen in figure \ref{fig:performance}. It shows the default settings for all parameters except the current one which we adjusted.
+
+\subsection{Integer components}
+In table \ref{tab:integer} we can see that reducing the number of integer multipliers to only one, no noticeable change in performance could be seen. Therefore we decided to reduce the amount to only one.
 
 \begin{table}[H]
 \centering
@@ -131,10 +133,10 @@ In figure \ref{fig:performance} we can see that reducing the number of integer m
 \label{tab:integer}
 \end{table}
 
-When observing the Integer alu:s, we instead see in table \ref{tab:integer}, that the performance will reduce drastically when reducing the amount from 4, thus we decided not to change this in the design, as the performance will drop beneath 5\% of the standard design performance.
+When observing the integer alu:s, we instead see in table \ref{tab:integer}, that the performance will reduce drastically when reducing the amount from 4, thus we decided not to change this in the design, as the performance will drop beneath 5\% of the standard design performance.
 
 \subsection{Floating Point components}
-In figure \ref{fig:performance} we can see that by changing the floating point alu \& multiplier, the system didn't perform any worse, thus we decided to simplify these as much as possible.
+In table \ref{tab:floatingpoint} we can see that by changing the floating point alu \& multiplier, the system didn't perform any worse, thus we decided to simplify these as much as possible.
 
 \begin{table}[H]
 \centering
@@ -153,7 +155,7 @@ In figure \ref{fig:performance} we can see that by changing the floating point a
 \subsection{Control components}
 The speed of the system was already at the lowest possible, which means by changing this value will increase the complexity of the design, and therefore we decided not to.
 
-When changing the Register Update Unit wee can see in table \ref{tab:control}, that when reducing only one step to 16 instead of 32 we get such a result that by changing this we would nog longer be within 5\% of the standard designs performance.
+When changing the Register Update Unit wee can see in table \ref{tab:control}, that when reducing only one step to 16 instead of 32 we get such a bad result that we would no longer be within 5\% of the standard designs performance, therefore this is left unchanged.
 
 \begin{table}[H]
 \centering
@@ -186,8 +188,5 @@ When changing the Register Update Unit wee can see in table \ref{tab:control}, t
 
 \section{Discussion}
 For floating point alu \& multiplier we believe that these parts doesn't affect the performance due to that go.ss only uses integer values.
-
-\subsection{Atomic bomb go game}
-In Hiroshima, Japan on August 6, 1945, a game of Go was being played. Meanwhile high above the clouds, a lonely B29 Superfortress was soaring peacefully like an Albatross. It was carrying a very special payload, a product of a joint venture between science and military interests. The game was about to enter its third day of play when the B29 dropped an atomic bomb at 8:15am. After the boom the game was continued outside the city due recommendation from the police.
 
 \end{document}
