@@ -68,15 +68,29 @@ The purpose of this lab is to learn how Supersclar Processors work, and to try a
 \section{Method}
 We started out by investigating every part of the design individually, to see how they affected the performance of the design.
 
-We then choose to simplify the parts that didn't affect the performance. We also looked at what parts we couldn't simplify due to that the performance would go further than 5\% from the initial performance and thus couldn't be changed.
+We then choose to simplify the parts that didn't affect the performance. We determined what parts we couldn't simplify due to that the performance would go further than 5\% from the initial performance.
 
 Now we looked at the parts of the design that we could modify, and at their traces.
 
 \section{Result}
-\todo{insert graphs of how the parameters changed} \\
-In figure \ref{} we can see that by changing the floating point, floating point multiplexer and the integer multiplexer, the system didn't perform any worse.
-\todo{explain why go.ss doesn't need those} \\
+\todo{add initial values and performance} \\
 
+\subsection{Integer components}
+
+
+
+\subsection{Floating Point components}
+\todo{insert graphs of how the parameters changed} \\
+In figure \ref{} we can see that by changing the floating point alu \& multiplier, the system didn't perform any worse, thus these parts can be simplified as much as possible.
+
+
+\subsection{Control components}
+The speed of the system was already at the lowest possible, which means by changing this value we get a more complex design, thus we decided not to.
+
+
+
+\section{Discussion}
+\todo{explain why go.ss doesn't need those} \\
 
 \end{document}
 
