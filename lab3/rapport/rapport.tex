@@ -10,7 +10,6 @@
 \usepackage{epstopdf}
 \usepackage{listings}
 \usepackage[table]{xcolor}
-\usepackage{enumitem}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
@@ -65,6 +64,7 @@
 
 \section{Introduction}
 The purpose of this lab is to learn how Supersclar Processors work, and to try and modify an processor architecture to make it simpler, but it should still perform within 5\% of the inital designs performance.
+
 \section{Method}
 We started out by investigating every part of the design individually, to see how they affected the performance of the design.
 
@@ -73,7 +73,31 @@ We then choose to simplify the parts that didn't affect the performance. We dete
 Now we looked at the parts of the design that we could modify, and at their traces.
 
 \section{Result}
-\todo{add initial values and performance} \\
+In order to establish a baseline performance the simulator was run with the default arguments and a trace was created, with the command shown in listing \ref{sim:simcom}.
+
+\begin{lstlisting}[caption=Simulator command., label=sim:simcom, breaklines=true]
+sim-outorder -config superscalar.cfg -ptrace trace.trc 100000:+30 go.ss 3 8
+\end{lstlisting}
+
+The config file ''superscalar.cfg'' is supplied with the lab and contains all default settings. The most interesting of these are shown in table \ref{tab:default}.
+
+\begin{table}[H]
+\centering
+\caption{Default settings.}
+
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Setting} & \textbf{value} \\ \hline
+  res:ialu & 4 \\ \hline
+  res:imult & 4 \\ \hline
+  res:fpalu & 2 \\ \hline
+  res:fpmult & 2 \\ \hline
+  ruu:size & 32 \\ \hline
+\end{tabular}
+
+\label{tab:default}
+\end{table}
+
 
 \subsection{Integer components}
 
