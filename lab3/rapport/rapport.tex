@@ -62,7 +62,7 @@
 \thispagestyle{empty}
 \newpage
 
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 The purpose of this lab is to learn how Supersclar Processors work, and to try and modify an processor architecture to make it simpler, but it should still perform within 5\% of the inital designs performance.
 
 \section{Method}
@@ -85,33 +85,91 @@ The config file ''superscalar.cfg'' is supplied with the lab and contains all de
 \centering
 \caption{Default settings.}
 
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|r|}
   \hline
-  \textbf{Setting} & \textbf{value} \\ \hline
+  \textbf{Setting} & \textbf{Value} \\ \hline
   res:ialu & 4 \\ \hline
   res:imult & 4 \\ \hline
   res:fpalu & 2 \\ \hline
   res:fpmult & 2 \\ \hline
   ruu:size & 32 \\ \hline
+  commit:width & 8 \\ \hline
+  issue:width & 8 \\ \hline
+  decode:width & 16 \\ \hline
+  fetch:speed & 1 \\ \hline
 \end{tabular}
 
 \label{tab:default}
 \end{table}
 
+Running the simulator with the default settings gave us a simulation time of \textbf{50868222} cycles, with the 5\% requirement from section \ref{sec:intro} this results in a maximum of \textbf{53411633} simulation cycles.
 
 \subsection{Integer components}
 
 
+\begin{table}[H]
+\centering
+\caption{Integer settings.}
+
+\begin{tabular}{|l|r|r|}
+  \hline
+  \textbf{Setting} & \textbf{Value} & \textbf{Simulation cycles}\\ \hline
+  res:ialu & 2 & 55360220 \\ \hline
+  res:ialu & 1 & 73570279 \\ \hline
+  res:imult & 2 & 50868222 \\ \hline
+  res:imult & 1 & 50868609 \\ \hline
+\end{tabular}
+
+\label{tab:integer}
+\end{table}
 
 \subsection{Floating Point components}
 \todo{insert graphs of how the parameters changed} \\
 In figure \ref{} we can see that by changing the floating point alu \& multiplier, the system didn't perform any worse, thus these parts can be simplified as much as possible.
 
+\begin{table}[H]
+\centering
+\caption{Floating point settings.}
+
+\begin{tabular}{|l|r|r|}
+  \hline
+  \textbf{Setting} & \textbf{Value} & \textbf{Simulation cycles}\\ \hline
+  res:fpalu & 1 & 50868222 \\ \hline
+  res:fpmult & 1 & 50868222 \\ \hline
+\end{tabular}
+
+\label{tab:floatingpoint}
+\end{table}
 
 \subsection{Control components}
 The speed of the system was already at the lowest possible, which means by changing this value we get a more complex design, thus we decided not to.
 
+\begin{table}[H]
+\centering
+\caption{Control components settings.}
 
+\begin{tabular}{|l|r|r|}
+  \hline
+  \textbf{Setting} & \textbf{Value} & \textbf{Simulation cycles}\\ \hline
+  ruu:size & 16 & 53807041 \\ \hline
+  ruu:size & 8 & 60781481 \\ \hline
+  ruu:size & 4 & 74098784 \\ \hline
+  ruu:size & 2 & 107565825 \\ \hline
+  commit:width & 4 & 51076751 \\ \hline
+  commit:width & 2 & 53040135 \\ \hline
+  commit:width & 1 & 67227355 \\ \hline
+  issue:width & 4 & 51187526 \\ \hline
+  issue:width & 2 & 59378979 \\ \hline
+  issue:width & 1 & 85571238 \\ \hline
+  decode:width & 8 & 51165249 \\ \hline
+  decode:width & 4 & 53609877 \\ \hline
+  decode:width & 2 & 61683477 \\ \hline
+  fetch:speed & 4 & 49804290 \\ \hline
+  fetch:speed & 2 & 50868222 \\ \hline
+\end{tabular}
+
+\label{tab:floatingpoint}
+\end{table}
 
 \section{Discussion}
 \todo{explain why go.ss doesn't need those} \\
