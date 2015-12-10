@@ -27,7 +27,7 @@
 \usepackage{fancyhdr}
 \fancyhead[L]{}
 \pagestyle{fancy}
-\rhead{Pål Kastman}
+\rhead{Pål Kastman \\ Alexander Yngve}
 \chead{TDTS08}
 \thispagestyle{empty}
 
@@ -46,6 +46,7 @@
     \hline
     \textbf{Name} & \textbf{PIN} & \textbf{Email} \\ \hline
            {Pål Kastman} & {851212-7575} & {palka285@student.liu.se} \\ \hline
+           {Alexander Yngve} & {930320-6651} & {aleyn573@student.liu.se} \\ \hline
   \end{tabular}
 \end{center}
 \newpage
@@ -55,7 +56,8 @@
 \newpage
 
 \section{Introduction}
-This documents only purpose is to document what I will need to learn in the course tdts08
+This documents only purpose is to document what I will need to learn in the course tdts08. \\
+\todo{YNGVE OM DU VILL BYTA RUBRIKERNA SÅ ÄR DET HELT OKEJ, DOM ÄR BARA DÄR SOM STÖD NU}
 
 \section{Lecture 1: Memory Systems}
 \textbf{Memory hierarchy} \\
@@ -334,6 +336,101 @@ Compiler has much more time to determine parallel operations. \\
 
 \section{Lecture 8: SIMD Architectures}
 
+\subsection{Vector Processors}
+-- array processors \\
+-- vector processors \\
+-- data parallelism \\
+Typical SISD processors who behave like SIMD processors
+
+\subsubsection{Instruction-level parallelism}
+\subsubsection{Thread-level parallelism}
+\subsubsection{Data parallelism}
+\subsubsection{Vector Processors}
+\subsection{Array Processors}
+Typical SIMD processors
+
+\subsection{Dedicated Memory Organization}
+\subsection{Global Memory Organization}
+\subsection{Cray supercomputers}
+\subsubsection{Cray X1}
+\subsection{Multimedia extensions}
+\subsubsection{sub-word execution}
+\subsubsection{Packed Data Types}
+\subsubsection{SIMD Arithmetic Examples}
+
+\section{Lecture 9: MIMD Architectures}
+A set of general purpose processors connected together \\
+In contrast to a SIMD computer, a MIMD computer can execute different programs on different processors. \\
+
+-- Works asynchronously, and don't have to synchronize with each other. \\
+-- At any time, different processors may be executing different instructions on different pieces of data. \\
+-- They can be built from commodity (off-the-shelf) microprocessors with relatively little effort. \\
+-- They are also highly scalable, provided that an appropiate memory organization is used. \\
+-- Most current parallel computer are built based on the MIMD architecture. \\
+
+\subsubsection{SIMD vs. MIMD}
+\subsubsection{MIMD Processor Classification}
+\subsubsection{MIMD with Shared Memory}
+\subsubsection{MIMD with Distributed Memory}
+\subsubsection{Shared-Address-Space Platforms}
+\subsubsection{Multi-Computer Systems}
+\subsubsection{MIM Design Issues}
+\subsection{Symmetric multiprocessors (SMP)}
+\subsubsection{SMP Advantages}
+\subsubsection{SMP based on Shared Bus}
+\subsubsection{Multi-Port Memory SMP}
+\subsubsection{Operation System Issues}
+\subsubsection{IBM S/390}
+\subsection{NUMA Architecture}
+\subsubsection{Memory Access Approaches}
+\subsection{Clusters}
+\subsubsection{Losely Coupled MIMD - Clusters}
+\subsubsection{Clusters benefits}
+\subsubsection{Clusters Configurations}
+\subsubsection{IBM Blue Gene Supercomputer}
+\subsubsection{Parallelizing Computation}
+\subsubsection{Google Applications}
+
+\section{Lecture 10: Cache Coherence}
+To many section without text seems to bug \LaTeX
+\subsection{Introduction}
+\subsubsection{Write Through}
+\subsubsection{Write Back}
+\subsubsection{Software Solutions}
+\subsubsection{Hardware Solutions}
+\subsection{Directory protocols}
+\subsubsection{Cache Coherence Operations}
+\subsection{Snoopy protocols}
+\subsubsection{Write Invalidate SP}
+\subsubsection{Snoopy Cache Organization}
+\subsubsection{MESI State Transition Diagram}
+\subsubsection{Write Update SP}
+\subsubsection{Invalidate vs. Update Protocols}
+\subsubsection{Directory vs. Snoopy Schemes}
+\subsection{L1-L2 consistence}
+\subsubsection{Alpha-Server 4100}
+
+\section{Lecture 11: Multi-Core and GPU}
+To many section without text seems to bug \LaTeX
+\subsection{Multi-Core Computers}
+\subsubsection{Intel Core i7}
+\subsubsection{Superscalar vs. Multi-Core}
+\subsubsection{Single Core vs. Multi-Core}
+\subsubsection{Intel Polaris}
+\subsection{Multithreading}
+\subsubsection{Thread-Level Parallelism (TLP)}
+\subsubsection{Scalar Processor Approaches}
+\subsubsection{Superscalar Approaches}
+\subsubsection{SMT and Chip Multiprocessing}
+\subsubsection{Multithreading Paradigms}
+\subsection{Graphic Processing Unit (GPU)}
+\subsubsection{CPU vs. GPU}
+\subsection{General Purpose GPUs}
+\subsubsection{Divergent Execution}
+\subsubsection{Reduce Branch Divergence}
+\subsubsection{GPUPU}
+\subsubsection{NVIDIA Tesla}
+\subsubsection{CUDA Programming Language}
 
 \end{document}
 

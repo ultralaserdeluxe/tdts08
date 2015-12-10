@@ -127,3 +127,6 @@ sympy-plots-for-*.tex/
 
 # Emacs
 *.*~
+
+#mac-stuff
+.DS_store
