@@ -1,0 +1,126 @@
+\section{Lecture 4: RISC Computers}
+\subsection{Introduction}
+
+\textbf{Reduced Instruction Set Computer (RISC)} represents an important innovation in computer architecture. It is an attempt to produce more computation power by simplifying the instruction set of the CPU.
+
+The opposed trend to RISC it the \textbf{Complex Instruction Set Computer} (CISC), or ``the regular computers''.
+
+Both these architectures have been developed to address problems caused by the \textbf{semantic gap}, which is the increasing gap between high level languages (e.g. Java, C++, C\#) and low level machine language.
+
+\subsubsection{Main features of CISC}
+
+\begin{itemize}
+\item CISC attempts to make machine language (ML) instructions similar to high level languages (HLL)
+\item Uses a large number of instructions aswell as complex instructions.
+\item Many and complex addressing modes.
+\item Microprogramming techniques are used to implement the complicated instructions.
+\item Memory bottleneck is a major problem, due to complex addressing modes and multiple memory accesses instruction.
+\end{itemize}
+
+\subsubsection{Arguments for CISC}
+
+\begin{itemize}
+\item A rich instruction set should simplify the compiler by having instructions who match the HLL instructions.
+\item Programs are smaller in size and will thus take up less of the memory and smaller execution time due to fewer instructions.
+\item Program execution efficiency is improved by implementing complex operations in microcode rather than machine code.
+\end{itemize}
+
+\subsubsection{Microprogrammed Control}
+Microprogramming is a technique used to implement the control unit.
+\begin{itemize}
+\item The basic idea is to implement the control unit as a microprogram execution machine (a computer inside a computer). \\
+  -- The set of micro-operations occurring at one time defines a microinstruction. \\
+  -- A sequence of microinstructions is called a microprogram. \\
+\item The execution of a machine instruction becomes the execution of a sequence of micro-instructions. \\
+  -- This is similar to that a C++ statement is implemented by a sequence of machine instructions.
+\end{itemize}
+
+\todo{Jag tror det är såhär en Olle Roos-dator fungerar med sitt mikrominne, FRÅGA YNGVE} \\
+Microcodes are stored in a micromemory which is much faster than a cache, a ROM is often used because we almost never change this memory. Sometimes these memories are called firmwares.
+
+\subsubsection{Problems with CISC}
+As mentioned earlier, with CISC we simplify the compiler, but the hardware goes the opposite way and needs to be more complex. If complex instructions doesn't match the HLL instruction, in which case they may be of little use, this problem is getting bigger and bigger due to that the number of HLL are increasing.
+
+A complex hardware design makes the release time of a processor longer.
+
+\subsection{Program execution features}
+what are programs doing most of the time? \\
+Frequency of machine instructions executed:
+\begin{itemize}
+\item Moving data, 33\%
+\item Conditional branches  20\%
+\item Arithmetic/logic operations  16\%
+\item Others  0.1-10\%
+\end{itemize}
+
+The majority of instructions uses simple addressing modes, complex addressing modes are only used by $\sim$18\%.
+
+Operand types:
+\begin{itemize}
+\item 74-80\% scalars (integers, reals, characters, etc.).
+\item the rest (20-26\%) are arrays/structures; 90\% of them are global variables
+\item about 80\% of the scalars are local variables
+\end{itemize}
+
+\textbf{Conclusion}: The majority of operands are local variables of scalar type, which can be stored in registers.
+
+For HLL statements, most of the time is spent executing CALLs and RETURNs in programs. Even though those only take up 15\% it still takes up most of the time due to long executing times for those two.
+
+\subsection{RISC characteristics}
+\begin{itemize}
+\item Small number of simple instructions (desirable $\leq$ 100).
+\item Execution of one instruction per clock cycle.
+\item Complex operations are executed as a sequence of simple instructions.
+\item only LOAD and STORE instructions reference data in memory.
+\item Only a few simple addressing modes are used.
+\item Instructions are of fixed length and uniform format.
+\item Large number of registers, this is because the reduced complexity of the processor leaves silicon space on the chip to implement them (opposite of CISC).
+\end{itemize}
+
+\subsubsection{Register Windows}
+Large number of registers is usually very useful. However, if contents of all registers must be saved at every procedure call, more registers mean longer delay. A solution to this problem is to divide the register file into a set of fixed-size windows. \\
+-- Each window is assigned to a procedure. \\
+-- Windows for adjacent procedures are overlapped to allow parameter passing \\
+
+\subsubsection{Main advantages of RISC}
+Best support is given by optimizing most used and most time consuming architecture aspects.
+\begin{itemize}
+
+\item Frequently executed instructions.
+\item Simple memory reference.
+\item Procedure call/return.
+\item Pipeline design. \\
+\end{itemize}
+
+Consequently, we have:
+\begin{itemize}
+\item High performance for many applications:
+\item Less design complexity.
+\item Reduced power consumption.
+\item reducing design cost and time-to-market (newer technology).
+\end{itemize}
+  
+\subsubsection{Criticism of RISC}
+\begin{itemize}
+\item Operation might take several instructions to accomplish.
+\item more memory access might be needed.
+\item Execution speed may be reduced for certain applications.
+\item It usually leads to longer programs, which needs larger memory space to store.
+\item It makes it more difficult to program machine codes and assembly programs.
+\end{itemize}
+  
+\subsection{RISC vs. CISC}
+Studies have shown that RISC machines often run faster than CISC machines. But there is a problem in deciding what makes RISC better, some say it's not the hardware and instead the compilers for RISC that makes them better. But RISC on the other hand needs more memory because of its simpler instructions.
+
+Most recent CPUs are not strictly RISC or CISC, but more hybrids of both.
+
+In embedded systems RISC is \textbf{always} the better choice, due to:
+\begin{itemize}
+\item RISC gives better MIPS/watt ratio.
+\item RISC reduces power consumption.
+\item RISC lowers heat dissipation.
+\item RISC simplifies hardware and its design.
+\end{itemize}
+
+ARM processors with RISC architecture have been widely used in smart phones and computers (e.g., iPad).
+

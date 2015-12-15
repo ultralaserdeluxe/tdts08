@@ -1,0 +1,50 @@
+\section{Lecture 6: VLIW Processors}
+The difference from Superscalar is that in that architecture the hardware solves everything for us, if improvements are made on the design we don't need to change the programs. \\
+The down side though is that the architecture is very complex. \\
+-- A lot of hardware is needed for run-time detection of parallelism. \\
+-- It consumes a lot of power. \\
+-- There is, therefore a limit in how far we can go with this technique. \\
+
+The instruction window for execution is limited in size. \\
+-- This limits the capacity to detect large number of parallel instructions.
+
+\subsection{Very Long Instruction Word Processors}
+Several operations that can be executed in parallel are placed in a single instruction word. \\
+--VLIW rely on compile-time detecton of parallelism. \\
+-- The compiler analyzes the program and detects operations to be executed in parallel. \\
+
+After one instruction has been fetched, all the corresponding operations are issued in paralell.
+The instruction window limitation disappears: the compiler can potentially analyze the whole program to detect parallel operations.
+
+\subsubsection{Explicit Parallelism}
+Instruction parallelism scheduled at compile time.\\
+-- Included within the machine instructions explicitly.\\
+
+An EPIC (Explicitly Parallel Instruction Computing) processor \\
+--uses this information to perform parallel execution. \\
+
+The hardware is very much simplified \\
+-- The controller is similar to a simple scalar computer. \\
+-- The number of FUs can be increased without needing additional sophisticated hardware to detect parallelism, as in SSA. \\
+
+Compiler has much more time to determine parallel operations. \\
+-- This analysis is only done once off-line, while run-time detection is carried out by SSA hardware for each execution of the code. \\
+--Good compilers can detect parallelism based on global analysis of the whole program. \\
+
+\subsubsection{Main issues}
+-- Need a large number of registers. \\
+-- Large data transport capacity is needed between Fus and the register files and between register files and memory. \\
+-- High bandwidth between instruction cache and fetch unit is also needed due to long iunstructions.
+
+\subsubsection{Software issues}
+
+\subsection{Loop unrolling}
+
+\subsection{IA-64 architecture}
+\subsubsection{Predicated execution}
+\subsubsection{Instruction format}
+\subsubsection{Branch Predication}
+\textbf{NOT THE SAME AS BRANCH PREDICTION}
+\subsubsection{Placement of Loading}
+\subsubsection{Speculative Loading}
+
