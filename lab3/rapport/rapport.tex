@@ -209,7 +209,12 @@ Using the values in table \ref{tab:simplified} the simulation cycles increased t
 \label{tab:simplified}
 \end{table}
 
+\subsection{Traces}
+In our modified design, we can see that the later parts of the pipeline (EX \& WB) are utilized more effeciently than in the original, where IF seems to fetch more instructions than what it can execute. In our design we fetch them at a slower pace, hence having a more equal utilization of all stages.
+
+
 \section{Discussion}
 For floating point alu \& multiplier we believe that these parts doesn't affect the performance due to that go.ss only uses integer values.
 
+Using traces in this way seems hard because it's hard to compare since you might pick a place in the code where there are no differences even though the architecture is modified.
 \end{document}
