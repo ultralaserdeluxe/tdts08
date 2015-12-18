@@ -10,6 +10,7 @@
 \usepackage{epstopdf}
 \usepackage{listings}
 \usepackage[table]{xcolor}
+\usepackage{tabularx}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
@@ -63,7 +64,18 @@
 \newpage
 
 \section{Introduction}\label{sec:intro}
+The purpose of this lab was to convert normal sequential code to VLIW instructions, so that we would get a greater performance. Basically we do what the VLIW compiler does during compilation time.
 \section{Method}
+The approach for this lab was the following:
+\begin{enumerate}
+\item Choose a basic block, and disassemble the block. 
+\item Find dependencies between the instruction in the block.
+\item We pack the instruction into VLIWs.  
+\end{enumerate}
+
+\subsection{Basic Block}
+\subsection{Dependencies}
+\subsection{VLIW}
 \section{Result}
 \section{Discussion}
 \end{document}
