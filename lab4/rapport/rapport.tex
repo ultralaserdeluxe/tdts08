@@ -11,12 +11,21 @@
 \usepackage{listings}
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
+\usepackage{colortbl}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
 
 
 \definecolor{green}{rgb}{56,90,115}
+
+\makeatletter
+\def\minuscellcolor{%
+  % \ignorespaces not really needed, because \@ifnextchar gobbles spaces
+  \@ifnextchar.{\cellcolor{red}}{}%
+}
+\newcolumntype{C}{>{\minuscellcolor}r}
+\makeatother
 
 \lstset{literate=%
     {å}{{\r{a}}}1
@@ -77,5 +86,124 @@ The approach for this lab was the following:
 \subsection{Dependencies}
 \subsection{VLIW}
 \section{Result}
+We first choose to make our architecture with no limit, this design can be seen in \ref{tab:vliw1}.
+\begin{table}[H]
+  \caption{}
+  \label{tab:vliw1}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{10}{C|}}
+    \hline
+    \multicolumn{3} {|c|} {\bfseries ALU} &
+    \multicolumn{1} {c|} {\bfseries MUL} &
+    \multicolumn{1} {c|} {\bfseries FPU}  &
+    \multicolumn{5} {c|} {\bfseries BAU} \\ \hline 
+                {} & {} & {} & {} & {} & {41b528} & {41b530} & {41b538} & {41b548} & {41b558}\\ \hline
+                {41b540} & {41b568} & {41b560} & {} & {} & {41b560} & {} & {} & {} & {}\\ \hline
+                {41b570} & {41b588} & {41b580} & {} & {} & {} & {} & {} & {} & {}\\ \hline
+                {} & {} & {} & {} & {} & {41b578} & {} & {} & {} & {}\\ \hline
+                {41b590} & {} & {} & {} & {} & {} & {} & {} & {} & {}\\ \hline
+                {} & {} & {} & {} & {} & {41b598} & {41b5a0} & {} & {} & {}\\ \hline
+  \end{tabular}
+\end{table}
+We then tried to reduce some of the units without loosing any performance, we first by tried by removing one of the BAUs (figure \ref{tab:vliw2}), since those are the most expensive units. In table \ref{tab:performance} we can see that this design (VLIW2) doesn't perform any worse than the first design (VLIW1), so we continued to reduce more units in search of an even better design for this block.
+
+\begin{table}[H]
+  \caption{}
+  \label{tab:vliw2}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{8}{p{8mm}|}}
+    \hline
+    \multicolumn{3} {|c|} {\bfseries ALU} &
+    \multicolumn{1} {c|} {\bfseries MUL} &
+    \multicolumn{1} {c|} {\bfseries FPU}  &
+    \multicolumn{3} {c|} {\bfseries BAU} \\ \hline 
+                {} & {} & {} & {} & {} & {41b528} & {41b558} & {41b538} \\ \hline
+                {41b568} & {41b540} & {41b560} & {} & {} & {41b548} & {41b530} & {}\\ \hline
+                {41b570} & {41b580} & {} & {} & {} & {41b550} & {} & {} \\ \hline
+                {41b588} & {} & {} & {} & {} & {41b578} & {} & {}\\ \hline
+                {41b590} & {} & {} & {} & {} & {} & {} & {} \\ \hline
+                {} & {} & {} & {} & {} & {41b598} & {41b5a0} & {}\\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{}
+  \label{tab:vliw3}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{6}{p{8mm}|}}
+    \hline
+    \multicolumn{2} {|c|} {\bfseries ALU} &
+    \multicolumn{1} {c|} {\bfseries MUL} &
+    \multicolumn{1} {c|} {\bfseries FPU}  &
+    \multicolumn{2} {c|} {\bfseries BAU} \\ \hline 
+                {} & {} & {} & {} & {41b528} & {41b538} \\ \hline
+                {41b568} & {41b540} & {} & {} & {41b548} & {41b558}\\ \hline
+                {41b570} & {41b560} & {} & {} & {41b550} & {41b530} \\ \hline
+                {41b588} & {41b580} & {} & {} & {41b578} & {}\\ \hline
+                {41b590} & {} & {} & {} & {} & {} \\ \hline
+                {} & {} & {} & {} & {41b598} & {41b5a0}\\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{}
+  \label{tab:vliw4}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{5}{p{8mm}|}}
+    \hline
+    \multicolumn{2} {|c|} {\bfseries ALU} &
+    \multicolumn{1} {c|} {\bfseries MUL} &
+    \multicolumn{1} {c|} {\bfseries FPU}  &
+    \multicolumn{1} {c|} {\bfseries BAU} \\ \hline 
+                {} & {} & {} & {} & {41b528} \\ \hline
+                {} & {} & {} & {} & {41b538} \\ \hline
+                {41b568} & {41b540} & {} & {} & {41b558} \\ \hline
+                {41b570} & {41b560} & {} & {} & {41b548} \\ \hline
+                {41b580} & {} & {} & {} & {41b550} \\ \hline
+                {41b588} & {} & {} & {} & {41b578} \\ \hline
+                {41b590} & {} & {} & {} & {41b530} \\ \hline
+                {} & {} & {} & {} & {41b598} \\ \hline
+                {} & {} & {} & {} & {41b5a0}\\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{}
+  \label{tab:pricelist}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{2}{r|}}
+    \hline
+    \multicolumn{2} {|c|} {\bfseries Pricelist} \\ \hline
+        {\bfseries ALU cost} & {2} \\ \hline
+        {\bfseries MUL cost} & {16} \\ \hline
+        {\bfseries FPU cost} & {32} \\ \hline
+        {\bfseries BAU cost} & {100} \\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \caption{}
+  \label{tab:performance}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{5}{r|}}
+    \hline
+        {\bfseries Design} & {\bfseries VLIW1} & {\bfseries VLIW2} & {\bfseries VLIW3} & {\bfseries VLIW4} \\ \hline
+        {No. ALU} & {3} & {3} & {2} & {2} \\ \hline
+        {No. MUL} & {1} & {1} & {1} & {1} \\ \hline
+        {No. FPU} & {1} & {1} & {1} & {1} \\ \hline
+        {No. BAU} & {5} & {3} & {2} & {1} \\ \hline
+        {Total Cost} & {554} & {354} & {252} & {152} \\ \hline
+        {No. Cycles} & {6} & {6} & {6} & {9} \\ \hline
+        {Cost per. ratio} & {3324} & {2124} & {1512} & {1368} \\ \hline
+  \end{tabular}
+\end{table}
+
+
 \section{Discussion}
 \end{document}
