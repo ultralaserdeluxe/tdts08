@@ -143,8 +143,26 @@ nop        nop nop 0x0041b528 0x0041b538
 
 \section{Result}
 We first choose to make our architecture with no limit, this design can be seen in \ref{tab:vliw1}.
+
+The prices for the different units can be seen in table \ref{tab:pricelist}.
+
 \begin{table}[H]
   \caption{}
+  \label{tab:pricelist}
+  \scriptsize
+  \centering
+  \begin{tabular}{|*{2}{r|}}
+    \hline
+    \multicolumn{2} {|c|} {\bfseries Pricelist} \\ \hline
+        {\bfseries ALU cost} & {2} \\ \hline
+        {\bfseries MUL cost} & {16} \\ \hline
+        {\bfseries FPU cost} & {32} \\ \hline
+        {\bfseries BAU cost} & {100} \\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+ \caption{When using 3 ALU, 1 MUL, 1 FPU and 5 BAU units.}
   \label{tab:vliw1}
   \scriptsize
   \centering
@@ -162,10 +180,10 @@ We first choose to make our architecture with no limit, this design can be seen 
                 {} & {} & {} & {} & {} & {41b598} & {41b5a0} & {} & {} & {}\\ \hline
   \end{tabular}
 \end{table}
-We then tried to reduce some of the units without loosing any performance, we first by tried by removing one of the BAUs (figure \ref{tab:vliw2}), since those are the most expensive units. In table \ref{tab:performance} we can see that this design (VLIW2) doesn't perform any worse than the first design (VLIW1), so we continued to reduce more units in search of an even better design for this block.
+We then tried to reduce some of the units without loosing any performance, we first by tried by removing one of the BAUs (figure \ref{tab:vliw2}), since those are the most expensive units. In table \ref{tab:performance} we can see that this design (VLIW2) doesn't perform any worse than the first design (VLIW1), so we continued to reduce more units to try and get an even cheaper design for this block.
 
 \begin{table}[H]
-  \caption{}
+  \caption{When using 3 ALU, 1 MUL, 1 FPU and 3 BAU units.}
   \label{tab:vliw2}
   \scriptsize
   \centering
@@ -184,8 +202,10 @@ We then tried to reduce some of the units without loosing any performance, we fi
   \end{tabular}
 \end{table}
 
+We tried to remove one more BAU, and one ALU (table \ref{tab:vliw3}). In table \ref{tab:performance} we can see that the performance is still the same as in the previous design, even though we have reduced it a lot.
+
 \begin{table}[H]
-  \caption{}
+  \caption{When using 2 ALU, 1 MUL, 1 FPU and 2 BAU units.}
   \label{tab:vliw3}
   \scriptsize
   \centering
@@ -204,8 +224,10 @@ We then tried to reduce some of the units without loosing any performance, we fi
   \end{tabular}
 \end{table}
 
+If we take a look in table \ref{tab:pricelist} we can see that the by far most expensive unit is the BAU, and by reducing this from 5 to 2 units we have reduced the price by more than half of the first deigns price. Because of this, we wanted to make sure we weren't able to reduce the design even further, and so we tried using only 1 BAU unit (table \ref{tab:vliw4}).
+
 \begin{table}[H]
-  \caption{}
+  \caption{When using 2 ALU, 1 MUL, 1 FPU and 1 BAU.}
   \label{tab:vliw4}
   \scriptsize
   \centering
@@ -227,20 +249,7 @@ We then tried to reduce some of the units without loosing any performance, we fi
   \end{tabular}
 \end{table}
 
-\begin{table}[H]
-  \caption{}
-  \label{tab:pricelist}
-  \scriptsize
-  \centering
-  \begin{tabular}{|*{2}{r|}}
-    \hline
-    \multicolumn{2} {|c|} {\bfseries Pricelist} \\ \hline
-        {\bfseries ALU cost} & {2} \\ \hline
-        {\bfseries MUL cost} & {16} \\ \hline
-        {\bfseries FPU cost} & {32} \\ \hline
-        {\bfseries BAU cost} & {100} \\ \hline
-  \end{tabular}
-\end{table}
+Instead of 6 clock cycles, we now got 9. Which means the design is 50\% worse than the other ones. thus we stopped here.
 
 \begin{table}[H]
   \caption{}
@@ -302,4 +311,9 @@ We then tried to reduce some of the units without loosing any performance, we fi
 \end{figure}
 
 \section{Discussion}
+Of course our results are only for one block of code and therefore our design of course might not be a very good one, except here. We choose to use an FPU and an MUL even though they weren't needed in our block, We think that this can be justified by arguing that without these, the design would be completely useless for other code blocks.
+
+We think that the third design (table \ref{tab:vliw3}), is for this block the clear winner.
+
+
 \end{document}
