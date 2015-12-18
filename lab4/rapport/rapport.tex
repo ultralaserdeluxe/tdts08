@@ -12,20 +12,33 @@
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
 \usepackage{colortbl}
+\usepackage{amssymb}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
-\definecolor{green}{rgb}{56,90,115}
+\definecolor{yngvesgrona}{RGB}{63,255,70}
+\definecolor{yngvesgraa}{RGB}{220,220,220}
+
+\let\emptyset\varnothing
+
+%\makeatletter
+%\newcommand*{\fourcellcolor}{}
+%\def\fourcellcolor\ignorespaces{%
+%  % \ignorespaces not really needed, because \@ifnextchar gobbles spaces
+%  \@ifnextchar4{\cellcolor{red}}{}%
+%}
 
 \makeatletter
-\def\minuscellcolor{%
+\newcommand*{\fourcellcolor}{}
+\def\fourcellcolor\ignorespaces{%
   % \ignorespaces not really needed, because \@ifnextchar gobbles spaces
-  \@ifnextchar.{\cellcolor{red}}{}%
+  \@ifnextchar4{\cellcolor{yngvesgrona}}{}%
 }
-\newcolumntype{C}{>{\minuscellcolor}r}
+
+\newcolumntype{C}{>{\fourcellcolor}c}
 \makeatother
 
 \lstset{literate=%
@@ -225,23 +238,29 @@ Dependency analysis of the above code results in the graph shown in figure \ref{
 We first choose to make our architecture with no limit, this design can be seen in table \ref{tab:vliw1}.
 
 \begin{table}[H]
- \caption{When using 3 ALU, 1 MUL, 1 FPU and 5 BAU units.}
+  \caption{When using 3 ALU, 1 MUL, 1 FPU and 5 BAU units.}
   \label{tab:vliw1}
   \scriptsize
   \centering
-  \begin{tabular}{|*{10}{C|}}
-    \hline
-    \multicolumn{3} {|c|} {\bfseries ALU} &
-    \multicolumn{1} {c|} {\bfseries MUL} &
-    \multicolumn{1} {c|} {\bfseries FPU}  &
-    \multicolumn{5} {c|} {\bfseries BAU} \\ \hline 
-                {} & {} & {} & {} & {} & {41b528} & {41b530} & {41b538} & {41b548} & {41b558}\\ \hline
-                {41b540} & {41b568} & {41b560} & {} & {} & {41b560} & {} & {} & {} & {}\\ \hline
-                {41b570} & {41b588} & {41b580} & {} & {} & {} & {} & {} & {} & {}\\ \hline
-                {} & {} & {} & {} & {} & {41b578} & {} & {} & {} & {}\\ \hline
-                {41b590} & {} & {} & {} & {} & {} & {} & {} & {} & {}\\ \hline
-                {} & {} & {} & {} & {} & {41b598} & {41b5a0} & {} & {} & {}\\ \hline
-  \end{tabular}
+\begin{tabular}{|C|C|C|C|C|C|C|C|C|C|C|}
+  \hline
+  \multicolumn{3} {|c|} {\bfseries ALU} &
+  \multicolumn{1} {c|} {\bfseries MUL} &
+  \multicolumn{1} {c|} {\bfseries FPU}  &
+  \multicolumn{5} {c|} {\bfseries BAU} \\ \hline
+  \rowcolor{yngvesgraa}
+  $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ &41b528 & 41b530 & 41b538 & 41b548 & 41b558 \\ \hline
+  \rowcolor{yngvesgraa}
+  41b540 & 41b568 & 41b560 & $\emptyset$ & $\emptyset$ & 41b560 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$\\ \hline
+  \rowcolor{yngvesgraa}
+  41b570 & 41b588 & 41b580 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+  \rowcolor{yngvesgraa}
+  $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b578 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+  \rowcolor{yngvesgraa}
+  41b590 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+  \rowcolor{yngvesgraa}
+  $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b598 & 41b5a0 & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+\end{tabular}
 \end{table}
 We then tried to reduce some of the units without loosing any performance, we first by tried by removing one of the BAUs (figure \ref{tab:vliw2}), since those are the most expensive units. In table \ref{tab:performance} we can see that this design (VLIW2) doesn't perform any worse than the first design (VLIW1), so we continued to reduce more units to try and get an even cheaper design for this block.
 
@@ -250,18 +269,24 @@ We then tried to reduce some of the units without loosing any performance, we fi
   \label{tab:vliw2}
   \scriptsize
   \centering
-  \begin{tabular}{|*{8}{p{8mm}|}}
+  \begin{tabular}{|C|C|C|C|C|C|C|C|C|C|C|}
     \hline
     \multicolumn{3} {|c|} {\bfseries ALU} &
     \multicolumn{1} {c|} {\bfseries MUL} &
     \multicolumn{1} {c|} {\bfseries FPU}  &
-    \multicolumn{3} {c|} {\bfseries BAU} \\ \hline 
-                {} & {} & {} & {} & {} & {41b528} & {41b558} & {41b538} \\ \hline
-                {41b568} & {41b540} & {41b560} & {} & {} & {41b548} & {41b530} & {}\\ \hline
-                {41b570} & {41b580} & {} & {} & {} & {41b550} & {} & {} \\ \hline
-                {41b588} & {} & {} & {} & {} & {41b578} & {} & {}\\ \hline
-                {41b590} & {} & {} & {} & {} & {} & {} & {} \\ \hline
-                {} & {} & {} & {} & {} & {41b598} & {41b5a0} & {}\\ \hline
+    \multicolumn{3} {c|} {\bfseries BAU} \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b528 & 41b558 & 41b538 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b568 & 41b540 & 41b560 & $\emptyset$ & $\emptyset$ & 41b548 & 41b530 & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    41b570 & 41b580 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b550 & $\emptyset$ & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    41b588 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b578 & $\emptyset$ & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    41b590 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b598 & 41b5a0 & $\emptyset$ \\ \hline
   \end{tabular}
 \end{table}
 
@@ -272,18 +297,24 @@ We tried to remove one more BAU, and one ALU (table \ref{tab:vliw3}). In table \
   \label{tab:vliw3}
   \scriptsize
   \centering
-  \begin{tabular}{|*{6}{p{8mm}|}}
+  \begin{tabular}{|C|C|C|C|C|C|}%{p{8mm}|}}
     \hline
     \multicolumn{2} {|c|} {\bfseries ALU} &
     \multicolumn{1} {c|} {\bfseries MUL} &
     \multicolumn{1} {c|} {\bfseries FPU}  &
-    \multicolumn{2} {c|} {\bfseries BAU} \\ \hline 
-                {} & {} & {} & {} & {41b528} & {41b538} \\ \hline
-                {41b568} & {41b540} & {} & {} & {41b548} & {41b558}\\ \hline
-                {41b570} & {41b560} & {} & {} & {41b550} & {41b530} \\ \hline
-                {41b588} & {41b580} & {} & {} & {41b578} & {}\\ \hline
-                {41b590} & {} & {} & {} & {} & {} \\ \hline
-                {} & {} & {} & {} & {41b598} & {41b5a0}\\ \hline
+    \multicolumn{2} {c|} {\bfseries BAU} \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b528 & 41b538 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b568 & 41b540 & $\emptyset$ & $\emptyset$ & 41b548 & 41b558 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b570 & 41b560 & $\emptyset$ & $\emptyset$ & 41b550 & 41b530 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b588 & 41b580 & $\emptyset$ & $\emptyset$ & 41b578 & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    41b590 & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b598 & 41b5a0 \\ \hline
   \end{tabular}
 \end{table}
 
@@ -294,21 +325,30 @@ If we take a look in table \ref{tab:pricelist} we can see that the by far most e
   \label{tab:vliw4}
   \scriptsize
   \centering
-  \begin{tabular}{|*{5}{p{8mm}|}}
+  \begin{tabular}{|C|C|C|C|C|}
     \hline
     \multicolumn{2} {|c|} {\bfseries ALU} &
     \multicolumn{1} {c|} {\bfseries MUL} &
     \multicolumn{1} {c|} {\bfseries FPU}  &
-    \multicolumn{1} {c|} {\bfseries BAU} \\ \hline 
-                {} & {} & {} & {} & {41b528} \\ \hline
-                {} & {} & {} & {} & {41b538} \\ \hline
-                {41b568} & {41b540} & {} & {} & {41b558} \\ \hline
-                {41b570} & {41b560} & {} & {} & {41b548} \\ \hline
-                {41b580} & {} & {} & {} & {41b550} \\ \hline
-                {41b588} & {} & {} & {} & {41b578} \\ \hline
-                {41b590} & {} & {} & {} & {41b530} \\ \hline
-                {} & {} & {} & {} & {41b598} \\ \hline
-                {} & {} & {} & {} & {41b5a0}\\ \hline
+    \multicolumn{1} {c|} {\bfseries BAU} \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b528 \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b538 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b568 & 41b540 & $\emptyset$ & $\emptyset$ & 41b558 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b570 & 41b560 & $\emptyset$ & $\emptyset$ & 41b548 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b580 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b550 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b588 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b578 \\ \hline
+    \rowcolor{yngvesgraa}
+    41b590 & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b530 \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b598 \\ \hline
+    \rowcolor{yngvesgraa}
+    $\emptyset$ & $\emptyset$ & $\emptyset$ & $\emptyset$ & 41b5a0\\ \hline
   \end{tabular}
 \end{table}
 
