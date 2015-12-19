@@ -172,10 +172,130 @@ As with anti-dependencies, output dependencies are name dependencies. That is, t
 \end{lstlisting}
 
 \subsection{Parallel instruction execution}
-\subsubsection{Instruction vs Machine Parallelism}
+\textbf{Instruction-level parallelism (ILP)} is the average number of instructions in a program that a processor might be able to execute at the same time. It is determined by the number of \underline{true dependencies} and procedural (control) dependencies in relation to the number of other instructions.
+
+Consider the following two code fragments. The three instructions on the left are independent, and in theory all three could be executed in parallel. In contrast, the three instructions on the right cannot be executed in parallel because the second instruction uses the result of the first, and the third instruction uses the result of the second.
+\begin{lstlisting}[frame=single]  % Start your code-block
+  . . .
+  1. R1 = R2		1. R3 = R3 + 1
+  2. R3 = R3 + 1	2. R4 = R4 + R2
+  3. R4 = R4 + R2	3. R4 = R0
+\end{lstlisting}
+
+Instruction-level parallelism is also determined by operation latency: the time until the result of an instruction is available for use as an operand in a subsequent instruction. The latency determines how much of a delay a data or procedural dependency will cause.
+
+\textbf{Machine parallelism} of a processor, is the ability of the processor to take advantage of the ILP of the program. It it determined by the number of instructions that can be fetched and executed at the same time (the number of parallel pipelines), and by the speed and sophistication of the mechanisms that the processor uses to find independent instructions.
+
+The use of a fixed-length instruction set architecture, as in a RISC, enhances instruction-level parallelism. On the other hand, limited machine parallelism will limit performance no matter what the nature of the program.
+
+To achieve high performance, we need both ILP and machine parallelism. Ideally, we have the same ILP and machine parallelism. However, this is impossible, since the same computer is used for programs with different ILPs. 
+
 \subsubsection{Division and Decoupling}
+To increase ILP, we should divide the instruction execution into smaller tasks and decouple them. In particular, we have three important activities:
+\begin{itemize}
+\item \textbf{Instruction Issue} -- an instruction is initiated and starts execution
+\item \textbf{Instruction issue} -- an instruction is initiated and starts execution
+\item \textbf{Instruction commit} -- the operation results are written back to the register files or cache (The machine state is changed).
+\end{itemize}
+
+
 \subsubsection{SSA instruction Execution Policies}
-\subsubsection{In-Order with In-Order Completion}
-This seems important to understand
-\subsubsection{In-Order issue with Out-of-Order Completion}
-This seems important to understand
+Instructions can be executed in an order different from the strictly sequential one, with the requirement that \textbf{the results must be the same}.
+
+Execution policies usually used:
+\begin{itemize}
+\item In-order issue with in-order completion.
+\item In-order issue with out-of-order completion.
+\item Out-of-order issue with out-of-order completion.
+\item \st{Out-of-order issue with in-order completion}.
+\end{itemize}
+
+\subsubsection{In-Order Issue with In-Order Completion}
+Instructions are issued in exact program order, and completed in the same order (with parallel issue and completion, of course!).
+\begin{itemize}
+\item An instruction cannot be issued before the previous one has been issued.
+\item An instruction cannot be completed before the previous one has been completed.
+\end{itemize}
+
+To guarantee in-order completion, an instruction will stall when there is a conflict and when a unit requires more than one cycle to execute.
+
+\textbf{Example}: A processor can issue and decode 2 instructions per cycle, has 3 functional units (2 single-cycle integer units, and 1 two-cycle floating-point unit), and can write back 2 results per cycle.
+
+An instruction sequence with the following characteristics:
+
+\begin{itemize}
+\item I1 – needs two execute cycles (floating-point)
+\item I2 –
+\item I3 –
+\item I4 – needs the same function unit as I3
+\item I5 – needs data value produced by I4
+\item I6 – needs the same function unit as I5
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \scalebox{0.5}{\includegraphics{img/IOI-IOC.png}}
+  \caption{An example of In-Order Issue with In-Order Completion}
+  \label{fig:IOI-IOC}
+\end{figure}
+
+The processor detects and handles (by stalling) true data dependencies and resource conflicts, and thus does not rely on compiler-based technique (compatibility consideration)
+
+This is not a very efficient technique, but it simplifies the hardware.
+
+\subsubsection{In-Order Issue with Out-of-Order Completion}
+With out-of-order completion, a later instruction may complete before a previous one. It addresses mainly the issue of long-latency operations, such as division.
+
+With out-of-order completion, any number of instructions may be in the exe- cution stage at any one time, up to the maximum degree of machine parallelism across all functional units. Instruction issuing is stalled by a resource conflict, a data dependency, or a procedural dependency.
+
+\textbf{Example}:
+
+\begin{itemize}
+\item I1 – needs two execute cycles
+\item I2 –
+\item I3 –
+\item I4 – conflict with I3
+\item I5 – depending on I4
+\item I6 – conflict with I5
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \scalebox{0.5}{\includegraphics{img/IOI-OOC.png}}
+  \caption{An example of In-Order Issue with Out-Order Completion}
+  \label{fig:IOI-OOC}
+\end{figure}
+
+Now instruction I2 can write back, and doesn't have to wait for I1.
+\todo{\\tror inte jag fattar det här rätt, kanske borde skriva om detta. \\ det står bättre i kursboken (runt sida 580), kanske borde skriva om det istället}
+
+\subsubsection{Out-Order Issue with Out-of-Order Completion}
+With \textbf{in-order issue}, no new instruction can be issued when the processor has detected a conflict, and is stalled until after the conflict has been resolved. The processor is not allowed to look ahead for further instructions, which could be executed in parallel with the current ones.
+
+With \textbf{out-of-order issue} we can continue to fetch new instructions even though we have to stall in a later stage.
+
+We can do this by decouple the decode and execution stages of the pipeline. We then use a buffer, called the \textbf{instruction window} which we put the instructions in when we have fetched and decoded them, note that this can only be done if this buffer if not full.
+
+When an functional unit becomes free, an instruction from the instruction window may be issued to the execution stage. Any instruction may be issued as long as it is of the right type for the free unit, and it doesn't inflict any conflict.
+
+\textbf{Example}:
+
+\begin{itemize}
+\item I1 – needs two execute cycles
+\item I2 –
+\item I3 –
+\item I4 – conflict with I3
+\item I5 – depending on I4
+\item I6 – conflict with I5
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \scalebox{0.5}{\includegraphics{img/OOI-OOC.png}}
+  \caption{An example of Out-Order Issue with Out-Order Completion}
+  \label{fig:OOI-OOC}
+\end{figure}
+
+This works as a look-ahead capability for the processor. Instructions are issued from the instruction window with little regard for their original program order. As before, the only constraint is that the program execution behaves correctly.
+
+\todo{\\det står mer om detta i kursboken också sida 583-584}
