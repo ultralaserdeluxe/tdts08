@@ -104,8 +104,55 @@ Amdahl's law is often used in parallel computing to predict the theoretical spee
 \todo{and impact of communications}
 
 \subsection{Interconnection network}
+Interconnecting Networks (IN) is a key component of parallel computers and has a decisive influence on
+\begin{itemize}
+\item overall performance
+\item total cost of the architecture
+\end{itemize}
+
+The traffic in an IN consists of:
+\begin{itemize}
+\item data transfer
+\item transfer of commands and requests (control information).
+\end{itemize}
+
+The key parameters of an IN are:
+\begin{itemize}
+\item total bandwidth: transferred bits/second.
+\item implementation cost. 
+\end{itemize}
+
 \subsubsection{Single Bus}
+These are simple cheap and relatively flexible. Only one communication is allowed at one time, which means the bandwidth is shared by all nodes.
+
+Its performance is relatively poor, in order to get a good performance the number of nodes needs to be limited (16-20), and we can use several buses instead.
 \subsubsection{Completely Connected Network}
+Here every is connected to each other, which means that communication can be performed in parallel between any pair of nodes. Performance is high but also the construction cost, which will increase rapidly by every added node.
 \subsubsection{Crossbar Network}
+A dynamic network: the interconnection topology can be modified by configurating the switches. It is completely connected: any node can be directly connected to any other
+\\\todo{borde det inte stå att: kan vara completely connected?}
 \subsubsection{Mesh Network}
+\begin{itemize}
+\item Cheaper than completely connected networks, while giving relatively good performance.
+\item In order to transmit data between two nodes, routing through intermediate nodes is needed (maximum 2(n-1) intermediates for an $n^2$ mesh).
+\item It is possible to provide wrap-around connections: Torus.
+\item Three dimensional meshes have also been implemented.
+\end{itemize}
+
+\begin{figure}
+  \hfill
+  \subfigure[Regular mesh network]{\includegraphics[width=5cm]{img/mesh.png}}
+  \hfill
+  \subfigure[Torus network]{\includegraphics[width=5cm]{img/torus.png}}
+  \hfill
+  \caption{Mesh Network}
+\end{figure}
+
 \subsubsection{Hypercube Network}
+$2^n$ nodes are arranged in an n-dimensional cube. Each node is connected to n neighbors.
+\begin{figure}[H]
+  \centering
+  \scalebox{0.6}{\includegraphics{img/hypercube.png}}
+  \caption{Hypercube Network}
+  \label{fig:hypercube-network}
+\end{figure}
