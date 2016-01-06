@@ -94,9 +94,12 @@ The architecture presented in the paper is NVIDIAs CUDA (Compute Unified Device 
 
 The main control flow of the program is executed by the CPU and the GPU is used as a coprocessor. This way the low latency CPU executes the serial instructions and deals with branching and control and the GPU is used for heavy parallel computations. The CPU copies instructions and data from main memory into memory on the graphics card and then starts execution on the GPU. When the computations on the GPU are finished the result is written back into main memory.
 
-The GPU is structured into many smaller \textit{Streaming Multiprocessors} which in turn consists of lots of computational cores (\textit{CUDA cores}). One thread runs on each CUDA core, however only copies of the same thread may run simultaneously, making CUDA a SIMD architecture. The division into Streaming Multiprocessors and CUDA cores is done to ensure scalability and also to provide a way for the threads to share data between eachother.
+The GPU is structured into many smaller \textit{Streaming Multiprocessors} which in turn consists of lots of computational cores (\textit{CUDA cores}). One thread runs on each CUDA core, however only copies of the same thread may run simultaneously, making CUDA a SIMD architecture. The division into Streaming Multiprocessors and CUDA cores is done to ensure scalability and also to provide a way for the threads to share data between each other.
 
-The experimental results clearly show that parallel computation is faster on GPUs. It was also found that the performance increase of the GPU over the CPU increases as the problem size increases, further strengthening the authors argument. 
+\section{Experiments}\label{sec:results}
+Two experiments are performed which correspond to two use cases, scientific computing and image processing/computer vision. The first experiment is to calculate the inverse of a matrix, a very common mathematical operation. The second experiment is to perform binarization of a greyscale image, which means that each pixel is set to either black or white depending on some threshold value.
+
+The results clearly show that parallel computation is faster on GPUs. It was also found that the performance increase of the GPU over the CPU increases as the problem size increases, further strengthening the authors argument. 
 
 \section{Conclusion}\label{sec:conclusion}
 We would like to have a better explanation of how the code is run on the GPU, as we think that this isn't sufficiently explained.
