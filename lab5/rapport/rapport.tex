@@ -13,6 +13,7 @@
 \usepackage{tabularx}
 \usepackage{colortbl}
 \usepackage{amssymb}
+\usepackage[margin={3.5cm,3.5cm}]{geometry}
 \epstopdfsetup{suffix=}
 \DeclareGraphicsExtensions{.ps}
 \DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
@@ -60,7 +61,7 @@
   \Huge \textbf{TDTS08: Lab Report}
 \end{center}
 \begin{center}
-  \Large Lab 5
+  \Large Multiprocessing and Multi-Computer Systems
 \end{center}
 
 \vspace{250pt}
@@ -89,7 +90,8 @@ The article compares CPUs and GPUs, and looks at how a GPU can be used in high d
 
 The article is about the differences between CPUs and GPUs and how GPUs can be used for calculations in a faster way than in the CPU. The major advantages with GPUs is that is it able to compute a lot of calculations in parallel independent of each other, this means that the CPU is able to only handle branches and control instructions that needs to be controlled allowing the hardware of GPUs to be simplified a lot because their controlling unit can be smaller. However, it should be noted that it needs to bee made sure that the data sent to the GPU contains as few branches and control instructions as possible leaving them to the CPU. 
 
-The main area of applicability is scientific computing, financial risk modeling, image processing.
+The main area of applicability is scientific computing, financial risk modeling and image processing.
+
 \section{Architecture}\label{sec:arch}
 The architecture presented in the paper is NVIDIAs CUDA (Compute Unified Device Architecture) architecture, used in NVIDIA GPUs since the G80 which was released in 2006. The CUDA architecture consists of both hardware (graphics card) and software (compiler, libraries and drivers).
 
@@ -114,6 +116,6 @@ The disadvantages to CUDA is that it leads to more complicated code, since it in
 
 However the largest disadvantage is that CUDA is proprietary and only works with GPUs from NVIDIA. Since the time of the article was published OpenCL has been released, which is an open standard and toolkit similar to CUDA which works on GPUs from many vendors.
 
-
+We believe the advantages outweigh the disadvantages and that the GPGPU trend will continue.
 \end{document}
 
