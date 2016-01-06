@@ -85,9 +85,11 @@ The article we have choosen is \textit{Numerical Parallel Processing Based on GP
 We choose this article because we didn't have a lab about multicore processors and GPUs and we wanted to explore this area further, but also because we think this area is very interesting and that we will se a lot of development in this area over the next few years.
 
 \section{Overview}\label{sec:overview}
-The article is about the differences in between CPUs and GPUs, the CPU has a faster response time and GPU is particularly suitable for high density parallel computing because its multi-stream processor could operate independently and concurrently at high speed when the processor solves problem, reducing the requirement of complex flow control and the computing complexity significantly.
+The article compares CPUs and GPUs, and looks at how a GPU can be used in high density parallel computing because it has multi-stream processors which can operate independently and concurrently at high speeds.
 
-has alot higher throughput than the CPU which means that if we want to calculate a lot of data and it doesn't matter in which order we get the result, then the GPU can be used with an 
+The article is about the differences between CPUs and GPUs and how GPUs can be used for calculations in a faster way than in the CPU. The major advantages with GPUs is that is it able to compute a lot of calculations in parallel independent of each other, this means that the CPU is able to only handle branches and control instructions that needs to be controlled allowing the hardware of GPUs to be simplified a lot because their controlling unit can be smaller. However, it should be noted that it needs to bee made sure that the data sent to the GPU contains as few branches and control instructions as possible leaving them to the CPU. 
+
+%with as few branch and control instructions as possible leaving them to the cpu instead.
 \section{Conclusion}\label{sec:conclusion}
 
 \end{document}
