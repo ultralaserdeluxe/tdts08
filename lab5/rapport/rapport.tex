@@ -99,12 +99,19 @@ The GPU is structured into many smaller \textit{Streaming Multiprocessors} which
 \section{Experiments}\label{sec:results}
 Two experiments are performed which correspond to two use cases, scientific computing and image processing/computer vision. The first experiment is to calculate the inverse of a matrix, a very common mathematical operation. The second experiment is to perform binarization of a greyscale image, which means that each pixel is set to either black or white depending on some threshold value.
 
-The results clearly show that parallel computation is faster on GPUs. It was also found that the performance increase of the GPU over the CPU increases as the problem size increases, further strengthening the authors argument. 
+The results clearly show that parallel computation is faster on GPUs, by at least an order of magnitude. It was also found that the performance increase of the GPU over the CPU increases as the problem size increases, further strengthening the authors argument. 
 
-\section{Conclusion}\label{sec:conclusion}
+\section{Review}\label{sec:review}
 We would like to have a better explanation of how the code is run on the GPU, as we think that this isn't sufficiently explained.
 
 We also believe that a higher level of linguistics could be desired from a report written by a team of researchers. Not only should it have been proof-read, there is also other issues on the matter such as no separation between mathematical formulas and no italic format on the formulas. This is also a issue with the code parts of the report as it is very hard to distinguish what is code and what is text sometimes. We think that the code parts could, and probably should have been placed in an appendix which could have been cited.
+
+\section{Conclusion}\label{sec:conclusion}
+The advantages of the CUDA architecture is the very large performance increase for parallel computations. There is simply no way for a normal CPU to match the throughput of the GPU when dealing with lots of similar calculations.
+
+The disadvantages to CUDA is that it leads to more complicated code, since it introduces another large API into the application codebase and also relies heavily on lots of memory copying between main memory and graphics memory. The build process is also more complicated since CUDA uses its own compiler.
+
+However the largest disadvantage is that CUDA is proprietary and only works with GPUs from NVIDIA. Since the time of the article was published OpenCL has been released, which is an open standard and toolkit similar to CUDA which works on GPUs from many vendors.
 
 
 \end{document}
