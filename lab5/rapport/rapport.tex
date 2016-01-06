@@ -1,0 +1,84 @@
+\documentclass[titlepage, a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[parfill]{parskip}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{epstopdf}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{amssymb}
+\epstopdfsetup{suffix=}
+\DeclareGraphicsExtensions{.ps}
+\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{yngvesgrona}{RGB}{63,255,70}
+\definecolor{yngvesgraa}{RGB}{220,220,220}
+
+\let\es\varnothing
+
+\makeatletter
+\newcommand*{\fourcellcolor}{}
+\def\fourcellcolor\ignorespaces{%
+  % \ignorespaces not really needed, because \@ifnextchar gobbles spaces
+  \@ifnextchar4{\cellcolor{yngvesgrona}}{}%
+}
+
+\newcolumntype{C}{>{\fourcellcolor}c}
+\makeatother
+
+\lstset{literate=%
+    {å}{{\r{a}}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {Å}{{\r{A}}}1
+    {Ä}{{\"A}}1
+    {Ö}{{\"O}}1
+}
+
+\newcommand{\todo}[1] {\textbf{\textcolor{red}{#1}}}
+
+\usepackage{fancyhdr}
+\fancyhead[L]{}
+\pagestyle{fancy}
+\rhead{Alexander Yngve \\ Pål Kastman}
+\chead{TDTS08}
+\thispagestyle{empty}
+
+\begin{document}
+
+{\ }\vspace{45mm}
+
+\begin{center}
+  \Huge \textbf{TDTS08: Lab Report}
+\end{center}
+\begin{center}
+  \Large Lab 5
+\end{center}
+
+\vspace{250pt}
+
+\begin{center}
+  \begin{tabular}{|*{3}{p{40mm}|}}
+    \hline
+    \textbf{Name} & \textbf{PIN} & \textbf{Email} \\ \hline
+           {Alexander Yngve} & {930320-6651} & {aleyn573@student.liu.se} \\ \hline
+           {Pål Kastman} & {851212-7575} & {palka285@student.liu.se} \\ \hline
+  \end{tabular}
+\end{center}
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\section{Introduction}\label{sec:intro}
+\end{document}
+
