@@ -89,6 +89,7 @@ The article compares CPUs and GPUs, and looks at how a GPU can be used in high d
 
 The article is about the differences between CPUs and GPUs and how GPUs can be used for calculations in a faster way than in the CPU. The major advantages with GPUs is that is it able to compute a lot of calculations in parallel independent of each other, this means that the CPU is able to only handle branches and control instructions that needs to be controlled allowing the hardware of GPUs to be simplified a lot because their controlling unit can be smaller. However, it should be noted that it needs to bee made sure that the data sent to the GPU contains as few branches and control instructions as possible leaving them to the CPU. 
 
+The main area of applicability is scientific computing, financial risk modeling, image processing.
 \section{Architecture}\label{sec:arch}
 The architecture presented in the paper is NVIDIAs CUDA (Compute Unified Device Architecture) architecture, used in NVIDIA GPUs since the G80 which was released in 2006. The CUDA architecture consists of both hardware (graphics card) and software (compiler, libraries and drivers).
 
