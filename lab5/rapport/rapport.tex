@@ -20,21 +20,6 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
-\definecolor{yngvesgrona}{RGB}{63,255,70}
-\definecolor{yngvesgraa}{RGB}{220,220,220}
-
-\let\es\varnothing
-
-\makeatletter
-\newcommand*{\fourcellcolor}{}
-\def\fourcellcolor\ignorespaces{%
-  % \ignorespaces not really needed, because \@ifnextchar gobbles spaces
-  \@ifnextchar4{\cellcolor{yngvesgrona}}{}%
-}
-
-\newcolumntype{C}{>{\fourcellcolor}c}
-\makeatother
-
 \lstset{literate=%
     {å}{{\r{a}}}1
     {ä}{{\"a}}1
@@ -81,14 +66,14 @@
 \newpage
 
 \section{Introduction}\label{sec:intro}
-The article we have choosen is \textit{Numerical Parallel Processing Based on GPU with CUDA Architecture} written by \textit{Chengming Zou, Chunfen Xia, Guanghui Zhao} at the \textit{College of Computer Science and Technology Wuhan University of Technology Wuhan, China}, which is number 15 in the list of articles.
+The article we have choosen is \textit{Numerical Parallel Processing Based on GPU with CUDA Architecture} written by \textit{Chengming Zou, Chunfen Xia} and \textit{Guanghui Zhao} at the \textit{College of Computer Science and Technology Wuhan University of Technology Wuhan, China}, which is number 15 in the list of articles.
 
-We choose this article because we didn't have a lab about multicore processors and GPUs and we wanted to explore this area further, but also because we think this area is very interesting and that we will se a lot of development in this area over the next few years.
+We choose this article because we didn't have a lab about multicore processors and GPUs and we wanted to explore this area further, but also because we think this area is very interesting and that we belive that de development in this area will increase further over in the coming years.
 
 \section{Overview}\label{sec:overview}
 The article compares CPUs and GPUs, and looks at how a GPU can be used in high density parallel computing because it has multi-stream processors which can operate independently and concurrently at high speeds.
 
-The article is about the differences between CPUs and GPUs and how GPUs can be used for calculations in a faster way than in the CPU. The major advantages with GPUs is that is it able to compute a lot of calculations in parallel independent of each other, this means that the CPU is able to only handle branches and control instructions that needs to be controlled allowing the hardware of GPUs to be simplified a lot because their controlling unit can be smaller. However, it should be noted that it needs to bee made sure that the data sent to the GPU contains as few branches and control instructions as possible leaving them to the CPU. 
+The article further looks at the differences between CPUs and GPUs and how GPUs can be used for calculations in a faster way than in the CPU. The major advantages with GPUs is that is it able to compute a lot of calculations in parallel, independent of each other. This means that the CPU is able to only handle branches and control instructions that needs to be controlled allowing the hardware of GPUs to be simplified a lot because their controlling unit can be smaller. However, it should be noted that it needs to bee made sure that the data sent to the GPU contains as few branches and control instructions as possible, leaving them to the CPU. 
 
 The main area of applicability is scientific computing, financial risk modeling and image processing.
 
@@ -118,4 +103,3 @@ However the largest disadvantage is that CUDA is proprietary and only works with
 
 We believe the advantages outweigh the disadvantages and that the GPGPU trend will continue.
 \end{document}
-
